@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="민원 서비스를 쉽고 빠르게 찾아보세요." />
+    <title>그린 민원 서비스 찾기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#service-list">목록으로 바로가기</a>
+    <header class="hero">
+      <div class="hero__inner">
+        <p class="eyebrow">GREEN CIVIL SERVICE</p>
+        <h1>필요한 민원 서비스를<br /><em>빠르게 찾아보세요.</em></h1>
+        <p class="hero__description">서비스명 검색과 민원분야 필터를 함께 사용해 원하는 업무를 쉽게 찾을 수 있습니다.</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="search-panel" aria-label="민원 서비스 검색 및 필터">
+        <div class="search-field">
+          <label for="keyword">서비스명 검색</label>
+          <div class="input-wrap">
+            <span aria-hidden="true">⌕</span>
+            <input id="keyword" type="search" placeholder="예: 여권, 건축, 발급" autocomplete="off" />
+          </div>
+        </div>
+        <div class="filter-field">
+          <label for="category">민원분야</label>
+          <select id="category">
+            <option value="">전체 분야</option>
+          </select>
+        </div>
+        <button id="reset-button" class="reset-button" type="button">초기화</button>
+      </section>
+
+      <section class="results" aria-live="polite">
+        <div class="results__heading">
+          <div>
+            <p class="eyebrow eyebrow--dark">SERVICE DIRECTORY</p>
+            <h2>민원 서비스 목록</h2>
+          </div>
+          <p id="result-count" class="result-count">총 <strong>0</strong>건</p>
+        </div>
+
+        <div class="table-wrap">
+          <table id="service-list">
+            <caption class="sr-only">민원 서비스 검색 결과</caption>
+            <thead>
+              <tr>
+                <th scope="col">서비스명</th>
+                <th scope="col">소속기관</th>
+                <th scope="col">민원분야</th>
+                <th scope="col">온라인 처리</th>
+                <th scope="col">처리기한</th>
+                <th scope="col">수수료</th>
+              </tr>
+            </thead>
+            <tbody id="service-body"></tbody>
+          </table>
+        </div>
+        <p id="empty-message" class="empty-message" hidden>조건에 맞는 민원 서비스가 없습니다.<br />검색어 또는 분야를 다시 선택해 주세요.</p>
+      </section>
+    </main>
+
+    <footer>그린 민원 서비스 안내 · 필요한 서비스를 한눈에 확인하세요.</footer>
+    <script src="script.js"></script>
+  </body>
+</html>
