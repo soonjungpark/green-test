@@ -28,11 +28,12 @@ const categorySelect = document.querySelector("#category");
 const resetButton = document.querySelector("#reset-button");
 const serviceBody = document.querySelector("#service-body");
 const resultCount = document.querySelector("#result-count strong");
+const totalCount = document.querySelector("#total-count");
 const tableWrap = document.querySelector(".table-wrap");
 const emptyMessage = document.querySelector("#empty-message");
 
 const formatFee = (fee) => fee === 0 ? "무료" : `${fee.toLocaleString("ko-KR")}원`;
-const formatDeadline = (days) => days === 0 ? "즉시" : `${days}일`;
+const formatDeadline = (days) => `${days}일`;
 
 function populateCategories() {
   [...new Set(services.map(({ category }) => category))].forEach((category) => {
@@ -48,14 +49,15 @@ function renderServices() {
   );
 
   resultCount.textContent = visibleServices.length;
+  totalCount.textContent = services.length;
   serviceBody.innerHTML = visibleServices.map((service) => `
     <tr>
-      <td>${service.name}</td>
-      <td>${service.agency}</td>
-      <td><span class="category-tag">${service.category}</span></td>
-      <td><span class="online-tag online-tag--${service.online === "가능" ? "yes" : "no"}">${service.online}</span></td>
-      <td>${formatDeadline(service.deadline)}</td>
-      <td>${formatFee(service.fee)}</td>
+      <td data-label="서비스명">${service.name}</td>
+      <td data-label="소속기관">${service.agency}</td>
+      <td data-label="민원분야"><span class="category-tag">${service.category}</span></td>
+      <td data-label="온라인처리"><span class="online-tag online-tag--${service.online === "가능" ? "yes" : "no"}">${service.online}</span></td>
+      <td data-label="처리기한">${formatDeadline(service.deadline)}</td>
+      <td data-label="수수료">${formatFee(service.fee)}</td>
     </tr>`).join("");
 
   const hasResults = visibleServices.length > 0;
